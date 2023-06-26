@@ -1,7 +1,7 @@
 export interface ClienteData{
     id: number,
     numeroDocumento: string,
-    tipoDocumento: "RG"|"CPF",
+    tipoDocumento: string,
     nome: string,
     logradouro?: string,
     numero?: string,
@@ -12,7 +12,7 @@ export interface ClienteData{
 
 export interface NewClienteData{
     numeroDocumento: string,
-    tipoDocumento: "RG"|"CPF",
+    tipoDocumento: string,
     nome: string,
     logradouro?: string,
     numero?: string,

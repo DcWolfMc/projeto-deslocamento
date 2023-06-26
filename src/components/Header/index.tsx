@@ -12,11 +12,10 @@ import {
   Toolbar,
   Typography,
 } from "@mui/material";
-import Link from "next/link";
 import { FunctionComponent, useState } from "react";
 import MenuIcon from "@mui/icons-material/Menu";
 import { ExpandLess, ExpandMore } from "@mui/icons-material";
-import { log } from "console";
+import Link from "next/link";
 
 interface NavegationItemType {
   name: string;
@@ -27,6 +26,7 @@ const drawerWidth = 282;
 export const Header: FunctionComponent = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [openGruop, setOpenGroup] = useState([false, false, false, false]);
+
   const handleExpandListGroup = (index: number) => {
     setOpenGroup((prev) => [
       ...prev.slice(0, index),
@@ -43,34 +43,34 @@ export const Header: FunctionComponent = () => {
     {
       name: "Clientes",
       expendedList: [
-        { name: "Listagem de Clientes", link: "" },
-        { name: "Cadastrar Cliente", link: "" },
+        { name: "Listagem de Clientes", link: "/cliente" },
+        { name: "Cadastrar Cliente", link: "/cliente/new/" },
       ],
     },
     {
       name: "Condutores",
       expendedList: [
-        { name: "Listagem de condutores", link: "" },
-        { name: "Cadastrar condutor", link: "" },
+        { name: "Listagem de condutores", link: "/condutor" },
+        { name: "Cadastrar condutor", link: "/condutor/new" },
       ],
     },
     {
       name: "Deslocamento",
       expendedList: [
-        { name: "Listagem de Deslocamentos", link: "" },
-        { name: "Novo Deslocamento", link: "" },
+        { name: "Listagem de Deslocamentos", link: "/deslocamento" },
+        { name: "Novo Deslocamento", link: "/deslocamento/new" },
       ],
     },
     {
       name: "Veículos",
       expendedList: [
-        { name: "Listagem de veículos", link: "" },
-        { name: "Cadastrar veículo", link: "" },
+        { name: "Listagem de veículos", link: "/veiculo" },
+        { name: "Cadastrar veículo", link: "/veiculo/new" },
       ],
     },
   ];
   const drawer = (
-    <Box >
+    <Box>
       <Toolbar>
         <Typography variant="h6" noWrap component="div">
           LOGO
@@ -79,20 +79,25 @@ export const Header: FunctionComponent = () => {
       {navItems.map((item, index) => (
         <Box key={item.name}>
           <Divider />
-          <List>
+          <List sx={{padding:0}}>
             <ListItemButton onClick={() => handleExpandListGroup(index)}>
-              <ListItemText primary={item.name} />
+              <ListItemText primary={item.name}/>
               {openGruop[index] ? <ExpandLess /> : <ExpandMore />}
             </ListItemButton>
-            <Collapse in={openGruop[index]} timeout="auto" unmountOnExit sx={{
-                    bgcolor: "primary.700",
-                  }}>
+            <Collapse
+              in={openGruop[index]}
+              timeout="auto"
+              unmountOnExit
+              sx={{bgcolor: "secondary.dark"}}
+            >
               {item.expendedList.map((expendedItem, index) => (
                 <List key={expendedItem.name} component="div" disablePadding>
                   <Divider />
-                  <ListItemButton sx={{ pl: 4 }}>
-                    <ListItemText primary={expendedItem.name} />
-                  </ListItemButton>
+                  <Link href={expendedItem.link}>
+                    <ListItemButton sx={{ pl: 4 }}>
+                      <ListItemText primary={expendedItem.name} />
+                    </ListItemButton>
+                  </Link>
                 </List>
               ))}
             </Collapse>
@@ -107,7 +112,6 @@ export const Header: FunctionComponent = () => {
       content="header"
       sx={{
         zIndex: 10,
-        position: "fixed",
       }}
     >
       <AppBar content="div">
@@ -132,6 +136,7 @@ export const Header: FunctionComponent = () => {
           <Box
             content="nav"
             sx={{
+              flexGrow: 1,
               flexDirection: "row",
               display: { xs: "none", md: "flex" },
               gap: 2,
@@ -141,7 +146,8 @@ export const Header: FunctionComponent = () => {
               <List
                 key={item.name}
                 sx={{
-                  bgcolor:"primary.500",
+                  
+                  bgcolor:"primary.main",
                   zIndex: 10,
                   maxWidth: 260,
                   flexGrow: 1,
@@ -168,9 +174,11 @@ export const Header: FunctionComponent = () => {
                       disablePadding
                     >
                       <Divider />
-                      <ListItemButton sx={{ pl: 4 }}>
-                        <ListItemText primary={expendedItem.name} />
-                      </ListItemButton>
+                      <Link href={expendedItem.link}>
+                        <ListItemButton sx={{ pl: 4 }}>
+                          <ListItemText primary={expendedItem.name} />
+                        </ListItemButton>
+                      </Link>
                     </List>
                   ))}
                 </Collapse>
@@ -191,8 +199,8 @@ export const Header: FunctionComponent = () => {
           "& .MuiDrawer-paper": {
             boxSizing: "border-box",
             width: drawerWidth,
-            bgcolor:"primary.500",
-            color:"text.secondary"
+            bgcolor: "primary.main",
+            color: "text.secondary",
           },
         }}
       >

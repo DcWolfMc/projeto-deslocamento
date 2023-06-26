@@ -1,4 +1,4 @@
-import { ClienteData } from "@/@types/ClienteType";
+import { NewClienteData, ClienteData } from "@/@types/ClienteType";
 import { CondutorData } from "@/@types/CondutorType";
 import axios from "axios";
 
@@ -11,7 +11,7 @@ export async function  getCliente() {
     return api.get("Cliente/");
 }
 
-export async function  addCliente(data: ClienteData) {
+export async function  addCliente(data: NewClienteData) {
     return api.post(`Cliente/`,data);
 }
 
