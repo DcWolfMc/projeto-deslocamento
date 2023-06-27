@@ -168,7 +168,7 @@ export default function NewDeslocamento() {
         <Typography variant="h5" fontWeight={700} color={"primary.main"}>
           Iniciar Deslocamento
         </Typography>
-        <Typography variant="body2" color={"text.secondary"}>
+        <Typography variant="body2" fontWeight={500} color={"text.primary"}>
           Preencha as seguntes informações para iniciar o deslocamento.
         </Typography>
       </Stack>
@@ -187,6 +187,7 @@ export default function NewDeslocamento() {
                   fullWidth
                   onClick={() => handleOpenModal(1)}
                   disabled={loading}
+                  sx={{color:"text.secondary"}}
                 >
                   {loading ? <CircularProgress /> : "Selecionar Cliente"}
                 </Button>
@@ -221,6 +222,7 @@ export default function NewDeslocamento() {
                   fullWidth
                   onClick={() => handleOpenModal(2)}
                   disabled={loading}
+                  sx={{color:"text.secondary"}}
                 >
                   {loading ? <CircularProgress /> : "Selecionar Condutor"}
                 </Button>
@@ -255,6 +257,7 @@ export default function NewDeslocamento() {
                   fullWidth
                   onClick={() => handleOpenModal(3)}
                   disabled={loading}
+                  sx={{color:"text.secondary"}}
                 >
                   {loading ? <CircularProgress /> : "Selecionar Veículo"}
                 </Button>

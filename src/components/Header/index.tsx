@@ -72,8 +72,8 @@ export const Header: FunctionComponent = () => {
     <Box>
       <Toolbar>
         <Link href={"/"}>
-          <Typography variant="h6" noWrap component="div">
-            LOGO
+          <Typography variant="h6" noWrap component="div" fontWeight={700}>
+            DETOUR
           </Typography>
         </Link>
       </Toolbar>
@@ -82,7 +82,9 @@ export const Header: FunctionComponent = () => {
           <Divider />
           <List sx={{ padding: 0 }}>
             <ListItemButton onClick={() => handleExpandListGroup(index)}>
-              <ListItemText primary={item.name} />
+              <Typography variant="body1" fontWeight={700} lineHeight={2}>
+                {item.name}
+              </Typography>
               {openGruop[index] ? <ExpandLess /> : <ExpandMore />}
             </ListItemButton>
             <Collapse
@@ -96,7 +98,13 @@ export const Header: FunctionComponent = () => {
                   <Divider />
                   <Link href={expendedItem.link}>
                     <ListItemButton sx={{ pl: 4 }}>
-                      <ListItemText primary={expendedItem.name} />
+                      <Typography
+                        variant="body1"
+                        fontWeight={700}
+                        lineHeight={2}
+                      >
+                        {expendedItem.name}
+                      </Typography>
                     </ListItemButton>
                   </Link>
                 </List>
@@ -120,18 +128,28 @@ export const Header: FunctionComponent = () => {
           {/* Menu Button for responsive drawer */}
 
           <IconButton
-            color="inherit"
             aria-label="open drawer"
             edge="start"
             onClick={handleDrawerToggle}
-            sx={{ mr: 2, display: { sm: "block", md: "none" } }}
+            sx={{
+              mr: 2,
+              color: "grey.100",
+              display: { sm: "block", md: "none" },
+            }}
           >
             <MenuIcon />
           </IconButton>
-
-          <Typography variant="h6" component="div">
-            LOGO
-          </Typography>
+          <Link href={"/"}>
+            <Typography
+              variant="h6"
+              component="div"
+              fontWeight={700}
+              lineHeight={2}
+              color={"grey.100"}
+            >
+              DETOUR
+            </Typography>
+          </Link>
           {/* Start of the collapsible list navbar*/}
 
           <Box
@@ -147,6 +165,7 @@ export const Header: FunctionComponent = () => {
               <List
                 key={item.name}
                 sx={{
+                  color: "grey.100",
                   bgcolor: "primary.main",
                   zIndex: 10,
                   maxWidth: 260,
@@ -154,7 +173,14 @@ export const Header: FunctionComponent = () => {
                 }}
               >
                 <ListItemButton onClick={() => handleExpandListGroup(index)}>
-                  <ListItemText primary={item.name} />
+                  <Typography
+                    variant="body1"
+                    fontWeight={700}
+                    lineHeight={2}
+                    color={"grey.100"}
+                  >
+                    {item.name}
+                  </Typography>
                   {openGruop[index] ? <ExpandLess /> : <ExpandMore />}
                 </ListItemButton>
                 <Collapse
@@ -176,7 +202,14 @@ export const Header: FunctionComponent = () => {
                       <Divider />
                       <Link href={expendedItem.link}>
                         <ListItemButton sx={{ pl: 4 }}>
-                          <ListItemText primary={expendedItem.name} />
+                          <Typography
+                            variant="body1"
+                            fontWeight={700}
+                            lineHeight={2}
+                            color={"grey.100"}
+                          >
+                            {expendedItem.name}
+                          </Typography>
                         </ListItemButton>
                       </Link>
                     </List>

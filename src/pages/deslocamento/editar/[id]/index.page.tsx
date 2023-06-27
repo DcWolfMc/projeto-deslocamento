@@ -79,8 +79,8 @@ export default function NewDeslocamento(props: EditDeslocamentoProps) {
         <Typography variant="h5" fontWeight={700} color={"primary.main"}>
           Iniciar Deslocamento
         </Typography>
-        <Typography variant="body2" color={"text.secondary"}>
-          Preencha as seguntes informações para iniciar o deslocamento.
+        <Typography variant="body2" fontWeight={500} color={"text.primary"}>
+          Preencha as seguntes informações para encerrar o deslocamento.
         </Typography>
       </Stack>
       <ContentPaper>

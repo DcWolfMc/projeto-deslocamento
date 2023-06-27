@@ -22,7 +22,7 @@ import {
 import { useState } from "react";
 import { AxiosError } from "axios";
 import { ModalBox } from "../components/styles";
-import { ArrowBackRounded, } from "@mui/icons-material";
+import { ArrowBackRounded, Delete, } from "@mui/icons-material";
 
 interface VeiculoItensProps {
   tag: string;
@@ -94,7 +94,7 @@ export default function VeiculoPage(props: VeiculoData) {
         </Typography>
         
         </Box>
-        <Grid container rowSpacing={2} columnSpacing={{ xs: 1 }}>
+        <Grid container rowSpacing={2} columnSpacing={{ xs: 0 }}>
           <Grid
             item
             xs={12}
@@ -114,8 +114,9 @@ export default function VeiculoPage(props: VeiculoData) {
               </Button>
               <Button
                 variant="contained"
-                color="error"
+                color="secondary"
                 onClick={handleOpenModal}
+                startIcon={<Delete/>}
               >
                 Deletar Veículo
               </Button>

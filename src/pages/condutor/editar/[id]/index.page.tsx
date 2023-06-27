@@ -59,7 +59,7 @@ export default function CondutorPage(props: CondutorData) {
         <Typography variant="h5" fontWeight={700} color={"primary.main"}>
           Editar de Condutor
         </Typography>
-        <Typography variant="body2" color={"text.secondary"}>
+        <Typography variant="body2" fontWeight={500} color={"text.primary"}>
           Seja bem-vindo a edição de Condutor, {props.nome}! Aqui você pode atualizar as informações de sua habilitação.
         </Typography>
       </Stack>
@@ -144,7 +144,7 @@ export default function CondutorPage(props: CondutorData) {
           </Grid>
         </form>
       </ContentPaper>
-      <Typography variant="body2" fontWeight={700} color={"text.secondary"}>
+      <Typography variant="body2" fontWeight={700} color={"text.primary"}>
         *Para modificar dados como o Nome ou o Número da Habilitação,
         busca atendimento personalizado na central.
       </Typography>

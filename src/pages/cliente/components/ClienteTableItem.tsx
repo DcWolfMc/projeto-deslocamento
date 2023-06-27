@@ -100,7 +100,7 @@ export const ClienteTableItem: FunctionComponent<ClienteTableItemProps> = ({
           <Chip
             label="Apagar"
             variant="filled"
-            color="error"
+            color="secondary"
             onClick={handleOpenModal}
           />
           <Modal

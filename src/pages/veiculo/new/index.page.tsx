@@ -48,7 +48,7 @@ export default function NewVeiculo() {
         <Typography variant="h5" fontWeight={700} color={"primary.main"}>
           Cadastre um novo Veículo
         </Typography>
-        <Typography variant="body2" color={"text.secondary"}>
+        <Typography variant="body2" fontWeight={500} color={"text.primary"}>
           Precisamos de algumas informações para criar um novo veículo.
           Certifique de preencher todos os dados abaixo.
         </Typography>

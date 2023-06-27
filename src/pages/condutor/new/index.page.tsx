@@ -51,7 +51,7 @@ export default function NewCondutor() {
         <Typography variant="h5" fontWeight={700} color={"primary.main"}>
           Cadastre um novo Condutor
         </Typography>
-        <Typography variant="body2" color={"text.secondary"}>
+        <Typography variant="body2"fontWeight={500} color={"text.primary"}>
           Precisamos de algumas informações para criar seu perfil de Condutor!
           Lembrando que você poderá editar essas informações depois.
         </Typography>

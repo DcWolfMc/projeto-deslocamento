@@ -22,7 +22,7 @@ import {
 import { useState } from "react";
 import { AxiosError, AxiosResponse } from "axios";
 import { ModalBox } from "../components/DeslocamentoTableItem/styles";
-import { ArrowBackRounded, } from "@mui/icons-material";
+import { ArrowBackRounded, Delete, } from "@mui/icons-material";
 import dayjs from "dayjs";
 import { ClienteData } from "@/@types/ClienteType";
 import { CondutorData } from "@/@types/CondutorType";
@@ -126,7 +126,7 @@ export default function DeslocamentoPage(props: DeslocamentoPageProps) {
         </Typography>
         
         </Box>
-        <Grid container rowSpacing={2} columnSpacing={{ xs: 1 }}>
+        <Grid container rowSpacing={2} columnSpacing={{ xs: 0 }}>
           <Grid
             item
             xs={12}
@@ -142,12 +142,13 @@ export default function DeslocamentoPage(props: DeslocamentoPageProps) {
                 color="inherit"
                 onClick={() => router.push(`/deslocamento/editar/${deslocamentoData.id}`)}
               >
-                Editar
+                Finalizar
               </Button>
               <Button
                 variant="contained"
-                color="error"
+                color="secondary"
                 onClick={handleOpenModal}
+                startIcon={<Delete/>}
               >
                 Deletar Deslocamento
               </Button>

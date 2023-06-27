@@ -53,7 +53,7 @@ export default function VeiculoPage(props: VeiculoData) {
         <Typography variant="h5" fontWeight={700} color={"primary.main"}>
           Editar de Veículo
         </Typography>
-        <Typography variant="body2" color={"text.secondary"}>
+        <Typography variant="body2" fontWeight={500} color={"text.primary"}>
           Seja bem-vindo a edição de veículo, Aqui você pode atualizar as
           informações de seu {props.marcaModelo} de placa {props.placa}.
         </Typography>
@@ -140,7 +140,7 @@ export default function VeiculoPage(props: VeiculoData) {
           </Grid>
         </form>
       </ContentPaper>
-      <Typography variant="body2" fontWeight={700} color={"text.secondary"}>
+      <Typography variant="body2" fontWeight={700} color={"text.primary"}>
         *Para modificar a placa do veículo, busca
         atendimento personalizado na central.
       </Typography>

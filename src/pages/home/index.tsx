@@ -13,10 +13,10 @@ export default function Home() {
       <Typography variant="h2" fontWeight={700} color={"primary.light"} textAlign={"center"}>
         Bem-vindo a Detour
       </Typography>
-      <Typography variant="body1" fontWeight={700} color={"text.secondary"} textAlign={"center"}>
+      <Typography variant="body1" fontWeight={700} color={"text.primary"} textAlign={"center"}>
         Para aqueles que desejam se deslocar sem complicações
       </Typography>
-      <Typography variant="h5" fontWeight={700} color={"text.secondary"} textAlign={"center"} marginTop={15}>
+      <Typography variant="h5" fontWeight={700} color={"text.primary"} textAlign={"center"} marginTop={15}>
         Acesse um de nossos serviços no menu acima e tenha uma frutífera experiência!
       </Typography>
     </Box>

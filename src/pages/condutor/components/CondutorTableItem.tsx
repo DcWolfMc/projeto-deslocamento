@@ -99,7 +99,7 @@ export const CondutorTableItem: FunctionComponent<CondutorTableItemProps> = ({
           <Chip
             label="Apagar"
             variant="filled"
-            color="error"
+            color="secondary"
             onClick={handleOpenModal}
           />
           <Modal

@@ -51,7 +51,7 @@ export default function ClientePage(props: ClienteData) {
         <Typography variant="h5" fontWeight={700} color={"primary.main"}>
           Editar de Cliente
         </Typography>
-        <Typography variant="body2" color={"text.secondary"}>
+        <Typography variant="body2" fontWeight={500} color={"text.primary"}>
           Seja bem-vindo a edição de cliente, {props.nome}! Se quiser alterar o nome, logradouro e outros dados associado à sua a conta de cliente, você poderá fazê-lo a seguir.
         </Typography>
       </Stack>
@@ -179,7 +179,7 @@ export default function ClientePage(props: ClienteData) {
           </Grid>
         </form>
       </ContentPaper>
-      <Typography variant="body2" fontWeight={700} color={"text.secondary"}>
+      <Typography variant="body2" fontWeight={700} color={"text.primary"}>
           *Para modificar dados como Tipo de documento e Número do Documento, busca atendimento personalizado na central.
         </Typography>
     </ClienteContainer>

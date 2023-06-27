@@ -99,7 +99,7 @@ export const VeiculoTableItem: FunctionComponent<VeiculoTableItemProps> = ({
           <Chip
             label="Apagar"
             variant="filled"
-            color="error"
+            color="secondary"
             onClick={handleOpenModal}
           />
           <Modal
