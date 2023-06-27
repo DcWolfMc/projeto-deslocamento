@@ -49,7 +49,7 @@ export default function Cliente() {
       if (
         input == "" ||
         cliente.nome.toString().toLowerCase().includes(input.toLowerCase()) ||
-        cliente.númeroDocumento
+        cliente.numeroDocumento
           .toString()
           .toLowerCase()
           .includes(input.toLowerCase())
