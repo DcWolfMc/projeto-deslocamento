@@ -131,7 +131,7 @@ export default function NewCondutor() {
                 disabled={loading}
                 endIcon={!loading && <ArrowForward />}
               >
-                {loading ? <CircularProgress color="inherit" /> : "Editar"}
+                {loading ? <CircularProgress color="inherit" /> : "Cadastrar"}
               </Button>
             </Grid>
           </Grid>

@@ -25,6 +25,6 @@ export interface NewDeslocamentoData {
 export interface EditDeslocamentoData {
         id: number,
         kmFinal: number,
-        fimDeslocamento: "",
+        fimDeslocamento: string,
         observacao?: string
 }

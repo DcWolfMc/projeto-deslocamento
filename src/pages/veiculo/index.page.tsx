@@ -54,7 +54,7 @@ export default function Veiculo() {
           .toLowerCase()
           .includes(input.toLowerCase())
       ) {
-        return Veiculo;
+        return veiculo;
       }
     });
     setFilterList(filterList);

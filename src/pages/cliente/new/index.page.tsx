@@ -45,7 +45,7 @@ export default function NewCliente() {
     await addCliente(newClienteData)
       .then((response: AxiosResponse) => {
         console.log("newCliente response data:", response.data);
-        router.push(`/cliente?id=${response.data}`);
+        router.push(`/cliente/${response.data}`);
       })
       .catch((error: AxiosError) => {
         console.log("newCliente error:", error.message);

@@ -9,34 +9,39 @@ import {
   TableRow,
   Typography,
 } from "@mui/material";
-import { getCondutor } from "@/lib/axios";
+import { getDeslocamento } from "@/lib/axios";
 import {
   StyledTableContainer,
   StyledTableBody,
   ContentPaper,
-  CondutorContainer,
+  DeslocamentoContainer,
 } from "./styles";
 import { useEffect, useState } from "react";
-import { CondutorData } from "@/@types/CondutorType";
+import { DeslocamentoData } from "@/@types/DeslocamentoType";
 import { AxiosResponse } from "axios";
 import { Add, Search } from "@mui/icons-material";
-import { CondutorTableItem } from "./components/CondutorTableItem";
+import { DeslocamentoTableItem } from "./components/DeslocamentoTableItem";
 import { useRouter } from "next/router";
+import dayjs from "dayjs";
 
-export default function Condutor() {
+export default function Deslocamento() {
   const router = useRouter();
-  const [condutorList, setCondutorList] = useState<CondutorData[]>([]);
-  const [filterList, setFilterList] = useState<CondutorData[]>([]);
+  const [deslocamentoList, setDeslocamentoList] = useState<DeslocamentoData[]>(
+    []
+  );
+  const [filterList, setFilterList] = useState<DeslocamentoData[]>([]);
 
   const [loading, setLoading] = useState<boolean>(true);
   useEffect(() => {
     async function callApi() {
-      await getCondutor().then((response: AxiosResponse<CondutorData[]>) => {
-        console.log(response.data);
+      await getDeslocamento().then(
+        (response: AxiosResponse<DeslocamentoData[]>) => {
+          console.log(response.data);
 
-        setCondutorList(response.data);
-        setFilterList(response.data);
-      });
+          setDeslocamentoList(response.data);
+          setFilterList(response.data);
+        }
+      );
     }
     if (loading) {
       callApi();
@@ -45,26 +50,29 @@ export default function Condutor() {
   }, [loading]);
 
   function handleFilter(input: string) {
-    let filterList = condutorList.filter((condutor) => {
+    let filterList = deslocamentoList.filter((deslocamento) => {
+      let dataInicial = dayjs(deslocamento.inicioDeslocamento).format(
+        "DD-MM-YYYY HH:mm:ss"
+      );
+      let datafinal = dayjs(deslocamento.fimDeslocamento).format(
+        "DD-MM-YYYY HH:mm:ss"
+      );
       if (
         input == "" ||
-        condutor.nome.toString().toLowerCase().includes(input.toLowerCase()) ||
-        condutor.numeroHabilitacao
-          .toString()
-          .toLowerCase()
-          .includes(input.toLowerCase())
+        dataInicial.toLowerCase().includes(input.toLowerCase()) ||
+        (deslocamento.fimDeslocamento &&
+          datafinal.toLowerCase().includes(input.toLowerCase()))
       ) {
-        return condutor;
+        return Deslocamento;
       }
     });
     setFilterList(filterList);
   }
 
-
   return (
-    <CondutorContainer maxWidth={"xl"}>
+    <DeslocamentoContainer maxWidth={"xl"}>
       <Typography variant="h4" fontWeight={700} color={"primary.main"}>
-        Listagem de Condutores
+        Listagem de Deslocamentoes
       </Typography>
 
       <ContentPaper>
@@ -73,13 +81,18 @@ export default function Condutor() {
           justifyContent={"flex-end"}
           color={"primary.dark"}
         >
-          <Button variant="contained" color="success" startIcon={<Add />} onClick={()=> router.push(`/condutor/new`)}>
-            Criar Condutor
+          <Button
+            variant="contained"
+            color="success"
+            startIcon={<Add />}
+            onClick={() => router.push(`/deslocamento/new`)}
+          >
+            Criar Deslocamento
           </Button>
         </Box>
 
         <TextField
-          label="Buscar por nome ou número da habilitação"
+          label="Buscar por Data de início ou finalização do Deslocamento"
           variant="outlined"
           fullWidth
           size="small"
@@ -98,19 +111,19 @@ export default function Condutor() {
           <Table>
             <TableHead>
               <TableRow>
-                <TableCell>Nome</TableCell>
-                <TableCell >
-                  Número da Habilitação
+                <TableCell sx={{ display: { xs: "none", md: "revert" } }}>
+                  Motivo
                 </TableCell>
-                <TableCell sx={{ display: { xs: "none", md: "revert" } }}>Categoria</TableCell>
+                <TableCell>Data de Início</TableCell>
+                <TableCell>Data de Finalização</TableCell>
                 <TableCell align="center">Funções</TableCell>
               </TableRow>
             </TableHead>
             <StyledTableBody>
-              {filterList.map((Condutor, index) => (
-                <CondutorTableItem
-                  key={Condutor.id}
-                  Condutor={Condutor}
+              {filterList.map((deslocamento, index) => (
+                <DeslocamentoTableItem
+                  key={deslocamento.id}
+                  deslocamento={deslocamento}
                   setLoading={setLoading}
                 />
               ))}
@@ -118,6 +131,6 @@ export default function Condutor() {
           </Table>
         </StyledTableContainer>
       </ContentPaper>
-    </CondutorContainer>
+    </DeslocamentoContainer>
   );
 }

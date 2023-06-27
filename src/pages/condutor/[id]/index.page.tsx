@@ -36,7 +36,7 @@ export default function CondutorPage(props: CondutorData) {
   const [snackbarMassage, setSnackbarMassage] = useState<string>("");
 
   const CondutorItens: CondutorItensProps[] = [
-    { tag: "nome", value: props.nome },
+    { tag: "Nome", value: props.nome },
     { tag: "Id", value: props.id.toString() },
     { tag: "Númeroda Habilitacao", value: props.numeroHabilitacao },
     { tag: "Categoria da Habilitacao", value: props.catergoriaHabilitacao },

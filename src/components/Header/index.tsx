@@ -26,7 +26,6 @@ const drawerWidth = 282;
 export const Header: FunctionComponent = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [openGruop, setOpenGroup] = useState([false, false, false, false]);
-
   const handleExpandListGroup = (index: number) => {
     setOpenGroup((prev) => [
       ...prev.slice(0, index),
@@ -72,23 +71,25 @@ export const Header: FunctionComponent = () => {
   const drawer = (
     <Box>
       <Toolbar>
-        <Typography variant="h6" noWrap component="div">
-          LOGO
-        </Typography>
+        <Link href={"/"}>
+          <Typography variant="h6" noWrap component="div">
+            LOGO
+          </Typography>
+        </Link>
       </Toolbar>
       {navItems.map((item, index) => (
         <Box key={item.name}>
           <Divider />
-          <List sx={{padding:0}}>
+          <List sx={{ padding: 0 }}>
             <ListItemButton onClick={() => handleExpandListGroup(index)}>
-              <ListItemText primary={item.name}/>
+              <ListItemText primary={item.name} />
               {openGruop[index] ? <ExpandLess /> : <ExpandMore />}
             </ListItemButton>
             <Collapse
               in={openGruop[index]}
               timeout="auto"
               unmountOnExit
-              sx={{bgcolor: "secondary.dark"}}
+              sx={{ bgcolor: "secondary.dark" }}
             >
               {item.expendedList.map((expendedItem, index) => (
                 <List key={expendedItem.name} component="div" disablePadding>
@@ -146,8 +147,7 @@ export const Header: FunctionComponent = () => {
               <List
                 key={item.name}
                 sx={{
-                  
-                  bgcolor:"primary.main",
+                  bgcolor: "primary.main",
                   zIndex: 10,
                   maxWidth: 260,
                   flexGrow: 1,

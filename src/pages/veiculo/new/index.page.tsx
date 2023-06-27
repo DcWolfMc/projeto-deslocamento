@@ -129,7 +129,7 @@ export default function NewVeiculo() {
                 disabled={loading}
                 endIcon={!loading && <ArrowForward />}
               >
-                {loading ? <CircularProgress color="inherit" /> : "Editar"}
+                {loading ? <CircularProgress color="inherit" /> : "Cadastrar"}
               </Button>
             </Grid>
           </Grid>
