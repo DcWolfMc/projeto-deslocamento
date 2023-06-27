@@ -1,4 +1,4 @@
-import { Add, ArrowBack, ArrowForward, Search } from "@mui/icons-material";
+import {ArrowBack, ArrowForward } from "@mui/icons-material";
 import {
   Typography,
   Button,
@@ -13,7 +13,7 @@ import {
 } from "@mui/material";
 import router from "next/router";
 import { ClienteContainer, ContentPaper } from "./styles";
-import { ClienteData, NewClienteData } from "@/@types/ClienteType";
+import {  NewClienteData } from "@/@types/ClienteType";
 import { FormEvent, useState } from "react";
 import { addCliente } from "@/lib/axios";
 import { AxiosError, AxiosResponse } from "axios";
@@ -68,7 +68,7 @@ export default function NewCliente() {
           <Grid container spacing={4}>
             <Grid item xs={12}>
               <TextField
-                label="nome do Cliente"
+                label="Nome do Cliente"
                 value={nome}
                 variant="outlined"
                 size="small"
@@ -108,7 +108,7 @@ export default function NewCliente() {
             <Grid item xs={8}>
               <TextField
                 fullWidth
-                label="logradouro"
+                label="Logradouro"
                 variant="outlined"
                 value={logradouro}
                 size="small"
@@ -140,7 +140,7 @@ export default function NewCliente() {
             </Grid>
             <Grid item xs={4}>
               <TextField
-                label="cidade"
+                label="Cidade"
                 variant="outlined"
                 value={cidade}
                 size="small"

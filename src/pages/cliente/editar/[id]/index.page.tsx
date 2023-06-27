@@ -60,7 +60,7 @@ export default function ClientePage(props: ClienteData) {
           <Grid container spacing={4}>
             <Grid item xs={12}>
               <TextField
-                label="nome do Cliente"
+                label="Nome do Cliente"
                 value={nome}
                 variant="outlined"
                 size="small"
@@ -102,7 +102,7 @@ export default function ClientePage(props: ClienteData) {
             <Grid item xs={8}>
               <TextField
                 fullWidth
-                label="logradouro"
+                label="Logradouro"
                 variant="outlined"
                 value={logradouro}
                 size="small"
@@ -134,7 +134,7 @@ export default function ClientePage(props: ClienteData) {
             </Grid>
             <Grid item xs={4}>
               <TextField
-                label="cidade"
+                label="Cidade"
                 variant="outlined"
                 value={cidade}
                 size="small"
@@ -180,7 +180,7 @@ export default function ClientePage(props: ClienteData) {
         </form>
       </ContentPaper>
       <Typography variant="body2" fontWeight={700} color={"text.secondary"}>
-          *Para modificar dados como Tipo de documento e Numero do Documento, busca atendimento personalizado na central.
+          *Para modificar dados como Tipo de documento e Número do Documento, busca atendimento personalizado na central.
         </Typography>
     </ClienteContainer>
   );

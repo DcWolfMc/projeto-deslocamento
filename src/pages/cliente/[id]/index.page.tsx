@@ -35,8 +35,8 @@ export default function ClientePage(props: ClienteData) {
   const [snackbarMassage, setSnackbarMassage] = useState<string>("");
 
   const clienteItens: clienteItensProps[] = [
-    { tag: "nome", value: props.nome },
-    { tag: "id", value: props.id.toString() },
+    { tag: "Nome", value: props.nome },
+    { tag: "Id", value: props.id.toString() },
     { tag: "Tipo documento", value: props.tipoDocumento },
     { tag: "Número Documento", value: props.numeroDocumento },
     { tag: "Logradouro", value: props.logradouro ? props.logradouro : "" },

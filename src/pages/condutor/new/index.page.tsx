@@ -1,13 +1,9 @@
-import { Add, ArrowBack, ArrowForward, Search } from "@mui/icons-material";
+import {ArrowBack, ArrowForward} from "@mui/icons-material";
 import {
   Typography,
   Button,
   TextField,
   Grid,
-  FormControl,
-  InputLabel,
-  MenuItem,
-  Select,
   Stack,
   CircularProgress,
 } from "@mui/material";

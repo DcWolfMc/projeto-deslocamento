@@ -49,7 +49,7 @@ export default function Cliente() {
       if (
         input == "" ||
         cliente.nome.toString().toLowerCase().includes(input.toLowerCase()) ||
-        cliente.numeroDocumento
+        cliente.númeroDocumento
           .toString()
           .toLowerCase()
           .includes(input.toLowerCase())
@@ -79,7 +79,7 @@ export default function Cliente() {
         </Box>
 
         <TextField
-          label="Buscar por nome ou por numero de documento"
+          label="Buscar por nome ou por número de documento"
           variant="outlined"
           fullWidth
           size="small"
@@ -100,7 +100,7 @@ export default function Cliente() {
               <TableRow>
                 <TableCell>Nome</TableCell>
                 <TableCell sx={{ display: { xs: "none", md: "revert" } }}>
-                  Numero do documento
+                  Número do documento
                 </TableCell>
                 <TableCell>Logradouro</TableCell>
                 <TableCell align="center">Funções</TableCell>

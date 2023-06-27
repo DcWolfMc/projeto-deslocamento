@@ -25,7 +25,7 @@ import { useRouter } from "next/router";
 
 export default function Condutor() {
   const router = useRouter();
-  const [CondutorList, setCondutorList] = useState<CondutorData[]>([]);
+  const [condutorList, setCondutorList] = useState<CondutorData[]>([]);
   const [filterList, setFilterList] = useState<CondutorData[]>([]);
 
   const [loading, setLoading] = useState<boolean>(true);
@@ -45,11 +45,11 @@ export default function Condutor() {
   }, [loading]);
 
   function handleFilter(input: string) {
-    let filterList = CondutorList.filter((Condutor) => {
+    let filterList = condutorList.filter((condutor) => {
       if (
         input == "" ||
-        Condutor.nome.toString().toLowerCase().includes(input.toLowerCase()) ||
-        Condutor.numeroHabilitacao
+        condutor.nome.toString().toLowerCase().includes(input.toLowerCase()) ||
+        condutor.numeroHabilitacao
           .toString()
           .toLowerCase()
           .includes(input.toLowerCase())
