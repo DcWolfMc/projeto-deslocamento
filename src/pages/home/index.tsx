@@ -1,7 +1,13 @@
 import { Box, Container, Typography } from "@mui/material";
+import { parseISO } from "date-fns";
 import Image from "next/image";
 
 export default function Home() {
+  const date = new Date().toISOString();
+  const parsedDate = parseISO(date);
+  console.log("Iso date:",date );
+  console.log("Parsed date:",parsedDate );
+  
   return (
     <Box >
       <h1>Hello World</h1>

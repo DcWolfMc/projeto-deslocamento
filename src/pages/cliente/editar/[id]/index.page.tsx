@@ -1,66 +1,58 @@
-import { Add, ArrowBack, ArrowForward, Search } from "@mui/icons-material";
-import {
-  Typography,
-  Button,
-  TextField,
-  Grid,
-  FormControl,
-  InputLabel,
-  MenuItem,
-  Select,
-  Stack,
-  CircularProgress,
-} from "@mui/material";
-import router from "next/router";
+import { ClienteData, EditClienteData } from "@/@types/ClienteType";
+import { addCliente, getClienteById, updateCliente } from "@/lib/axios";
+import { GetStaticPaths, GetStaticProps } from "next";
+import { useRouter } from "next/router";
 import { ClienteContainer, ContentPaper } from "./styles";
-import { ClienteData, NewClienteData } from "@/@types/ClienteType";
+import { Button, CircularProgress, FormControl, Grid, InputLabel, MenuItem, Select, Stack, TextField, Typography } from "@mui/material";
+import { ArrowBack, ArrowForward } from "@mui/icons-material";
 import { FormEvent, useState } from "react";
-import { addCliente } from "@/lib/axios";
-import { AxiosError, AxiosResponse } from "axios";
-
-export default function NewCliente() {
-  const [nome, setNome] = useState<string>("");
-  const [tipoDocumento, setTipoDocumento] = useState<string>("");
-  const [numeroDocumento, setNumeroDocumento] = useState<string>("");
-  const [logradouro, setLogradouro] = useState<string>("");
-  const [numero, setNumero] = useState<string>("");
-  const [bairro, setBairro] = useState<string>("");
-  const [cidade, setCidade] = useState<string>("");
-  const [uf, setUf] = useState<string>("");
-  const [loading, setLoading] = useState<boolean>(false);
+import { AxiosResponse, AxiosError } from "axios";
+export default function ClientePage(props: ClienteData) {
+    const {id} = props
+    const [nome, setNome] = useState<string>(props.nome);
+    const [tipoDocumento, setTipoDocumento] = useState<string>(props.tipoDocumento);
+    const [numeroDocumento, setNumeroDocumento] = useState<string>(props.numeroDocumento);
+    const [logradouro, setLogradouro] = useState<string|undefined>(props.logradouro);
+    const [numero, setNumero] = useState<string|undefined>(props.numero);
+    const [bairro, setBairro] = useState<string|undefined>(props.bairro);
+    const [cidade, setCidade] = useState<string|undefined>(props.cidade);
+    const [uf, setUf] = useState<string|undefined>(props.uf);
+    const [loading, setLoading] = useState<boolean>(false)
+  const router = useRouter();
+  console.log(props);
 
   async function handleSubmit(event: FormEvent) {
+
     event.preventDefault();
-    setLoading(true);
-    const newClienteData: NewClienteData = {
+    setLoading(true)
+    const EditClienteData:EditClienteData = {
+      id,
       nome,
-      numeroDocumento,
-      tipoDocumento,
       bairro,
       cidade,
       logradouro,
       numero,
-      uf,
-    };
-    await addCliente(newClienteData)
-      .then((response: AxiosResponse) => {
-        console.log("newCliente response data:", response.data);
-        router.push(`/cliente?id=${response.data}`);
-      })
-      .catch((error: AxiosError) => {
-        console.log("newCliente error:", error.message);
-        setLoading(false);
-      });
+      uf
+    }
+    await updateCliente(id, EditClienteData).then((response:AxiosResponse)=>{
+      console.log("editCliente response data:", response.data);
+      router.push(`/cliente/${response.data}`)
+      
+    }).catch((error:AxiosError)=>{
+      console.log("editCliente error:", error.message);
+      setLoading(false);
+    })
+
   }
+
   return (
     <ClienteContainer maxWidth={"xl"}>
       <Stack maxWidth={470}>
         <Typography variant="h5" fontWeight={700} color={"primary.main"}>
-          Cadastre um novo cliente
+          Editar de Cliente
         </Typography>
         <Typography variant="body2" color={"text.secondary"}>
-          Precisamos de algumas informações para criar seu perfil de Cliente!
-          Ah, você pode editar essas informações depois.
+          Seja bem-vindo a edição de cliente, {props.nome}! Se quiser alterar o nome, logradouro e outros dados associado à sua a conta de cliente, você poderá fazê-lo a seguir.
         </Typography>
       </Stack>
       <ContentPaper>
@@ -79,13 +71,14 @@ export default function NewCliente() {
             </Grid>
             <Grid item xs={6}>
               <FormControl size="small" fullWidth>
-                <InputLabel>Tipo do Documento</InputLabel>
+                <InputLabel sx={{color:"text.disabled"}}>Tipo do Documento</InputLabel>
                 <Select
                   value={tipoDocumento}
                   label="Tipo documento"
                   required
+                  disabled
                   onChange={(e) => setTipoDocumento(e.target.value)}
-                  sx={{ color: "text.secondary" }}
+                  sx={{ color: "text.primary" }}
                 >
                   <MenuItem value={"RG"}>RG</MenuItem>
                   <MenuItem value={"CPF"}>CPF</MenuItem>
@@ -100,6 +93,7 @@ export default function NewCliente() {
                 size="small"
                 type="number"
                 fullWidth
+                disabled
                 required
                 onChange={(e) => setNumeroDocumento(e.target.value)}
                 sx={{ input: { color: "text.secondary" } }}
@@ -158,15 +152,15 @@ export default function NewCliente() {
                 sx={{ input: { color: "text.secondary" } }}
               />
             </Grid>
-            <Grid item xs={6} color={"text.secondary"}>
+            <Grid item xs={6} color={"text.secondary"} >
               <Button
                 fullWidth
                 variant="outlined"
                 color="inherit"
                 startIcon={!loading && <ArrowBack />}
-                onClick={() => router.back()}
+                onClick={()=>router.back()}
               >
-                Voltar
+                 Voltar
               </Button>
             </Grid>
             <Grid item xs={6}>
@@ -178,12 +172,38 @@ export default function NewCliente() {
                 disabled={loading}
                 endIcon={!loading && <ArrowForward />}
               >
-                {loading ? <CircularProgress color="inherit" /> : "Cadastrar"}
+                {loading ? <CircularProgress color="inherit" /> : "Editar"}
               </Button>
             </Grid>
+            
           </Grid>
         </form>
       </ContentPaper>
+      <Typography variant="body2" fontWeight={700} color={"text.secondary"}>
+          *Para modificar dados como Tipo de documento e Numero do Documento, busca atendimento personalizado na central.
+        </Typography>
     </ClienteContainer>
   );
 }
+
+
+export const getStaticPaths: GetStaticPaths = async () => {
+    return {
+      paths: [],
+      fallback: "blocking",
+    };
+  };
+  
+  export const getStaticProps: GetStaticProps<any, { id: string }> = async ({
+    params,
+  }) => {
+    const clienteId = String(params?.id);
+  
+    const cliente = await getClienteById(Number(clienteId));
+    const data = await cliente.data;
+    return {
+      props: data,
+      revalidate: 60 * 10, // 10 minutes
+    };
+  };
+  

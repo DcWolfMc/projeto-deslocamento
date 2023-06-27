@@ -1,4 +1,4 @@
-import { ClienteData } from "@/@types/ClienteType";
+import { CondutorData } from "@/@types/CondutorType";
 import { useRouter } from "next/router";
 import {
   Alert,
@@ -14,15 +14,15 @@ import {
 } from "@mui/material";
 import { Dispatch, FunctionComponent, SetStateAction, useState } from "react";
 import { ModalBox } from "./styles";
-import { deleteCliente } from "@/lib/axios";
+import { deleteCondutor } from "@/lib/axios";
 import { AxiosError } from "axios";
 
-interface ClienteTableItemProps {
-  cliente: ClienteData;
+interface CondutorTableItemProps {
+  Condutor: CondutorData;
   setLoading: Dispatch<SetStateAction<boolean>>;
 }
-export const ClienteTableItem: FunctionComponent<ClienteTableItemProps> = ({
-  cliente,
+export const CondutorTableItem: FunctionComponent<CondutorTableItemProps> = ({
+  Condutor,
   setLoading,
 }) => {
   const router = useRouter();
@@ -37,17 +37,17 @@ export const ClienteTableItem: FunctionComponent<ClienteTableItemProps> = ({
   function handleCloseModal() {
     setOpenDeleteModal(false);
   }
-  function handleDeleteCliente() {
-    CallDeleteCliente(cliente.id);
+  function handleDeleteCondutor() {
+    CallDeleteCondutor(Condutor.id);
     handleCloseModal();
   }
 
-  async function CallDeleteCliente(id: number) {
-    await deleteCliente(id)
+  async function CallDeleteCondutor(id: number) {
+    await deleteCondutor(id)
       .then((response) => {
         setSnackbarType("info");
         setSnackbar(true);
-        setSnackbarMassage("Cliente deletado com sucesso!");
+        setSnackbarMassage("Condutor deletado com sucesso!");
         console.log("DeleteResponse:", response);
 
         setLoading((prev) => !prev);
@@ -55,7 +55,7 @@ export const ClienteTableItem: FunctionComponent<ClienteTableItemProps> = ({
       .catch((error: AxiosError) => {
         setSnackbarType("error");
         setSnackbar(true);
-        setSnackbarMassage("Algo deu errado ao deletar cliente!");
+        setSnackbarMassage("Algo deu errado ao deletar condutor!");
         console.log("DeleteError:", error.message);
       });
   }
@@ -72,11 +72,11 @@ export const ClienteTableItem: FunctionComponent<ClienteTableItemProps> = ({
 
   return (
     <TableRow>
-      <TableCell>{cliente.nome}</TableCell>
+      <TableCell>{Condutor.nome}</TableCell>
+      <TableCell>{Condutor.numeroHabilitacao}</TableCell>
       <TableCell sx={{ display: { xs: "none", md: "revert" } }}>
-        {cliente.numeroDocumento}
+        {Condutor.catergoriaHabilitacao}
       </TableCell>
-      <TableCell>{cliente.logradouro}</TableCell>
       <TableCell>
         <Stack
           direction={{ sx: "column", md: "row" }}
@@ -87,16 +87,15 @@ export const ClienteTableItem: FunctionComponent<ClienteTableItemProps> = ({
           <Chip
             label="Exibir"
             variant="outlined"
-            onClick={() => router.push(`/cliente/${cliente.id}`)}
+            onClick={() => router.push(`/condutor/${Condutor.id}`)}
             sx={{ color: "text.secondary" }}
           />
           <Chip
             label="Editar"
             variant="outlined"
             sx={{ color: "text.secondary" }}
-            onClick={() => router.push(`/cliente/editar/${cliente.id}`)}
+            onClick={() => router.push(`/condutor/editar/${Condutor.id}`)}
           />
-
           <Chip
             label="Apagar"
             variant="filled"
@@ -112,16 +111,16 @@ export const ClienteTableItem: FunctionComponent<ClienteTableItemProps> = ({
             <ModalBox>
               <Stack direction={"column"} gap={2}>
                 <Typography id="modal-modal-title" variant="h6" component="h2">
-                  Deletar Cliente?
+                  Deletar Condutor?
                 </Typography>
                 <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-                  Deseja proseguir em deleter o Cliente {cliente.nome} ?
+                  Deseja proseguir em deleter o condutor {Condutor.nome} ?
                 </Typography>
                 <Stack direction={"row"} justifyContent={"space-between"}>
                   <Button
                     variant="contained"
                     color="error"
-                    onClick={handleDeleteCliente}
+                    onClick={handleDeleteCondutor}
                   >
                     Deletar
                   </Button>

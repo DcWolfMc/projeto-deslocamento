@@ -20,3 +20,12 @@ export interface NewClienteData{
     cidade?: string,
     uf?: string
 }
+export interface EditClienteData{
+    id: number,
+    nome: string,
+    logradouro?: string,
+    numero?: string,
+    bairro?: string,
+    cidade?: string,
+    uf?: string
+}

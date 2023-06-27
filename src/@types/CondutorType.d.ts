@@ -2,7 +2,7 @@ export interface CondutorData {
         id: number,
         nome: string,
         numeroHabilitacao: string,
-        categoriaHabilitacao: string,
+        catergoriaHabilitacao: string,
         vencimentoHabilitacao: string,
 }
 
@@ -13,4 +13,8 @@ export interface NewCondutorData {
         vencimentoHabilitacao: string,
 }
 
-const date = new Date()
+export interface EditCondutorData {
+        id: number,
+        categoriaHabilitacao: string,
+        vencimentoHabilitacao: string,
+}

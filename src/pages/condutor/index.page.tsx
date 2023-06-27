@@ -9,32 +9,32 @@ import {
   TableRow,
   Typography,
 } from "@mui/material";
-import { getCliente } from "@/lib/axios";
+import { getCondutor } from "@/lib/axios";
 import {
   StyledTableContainer,
   StyledTableBody,
   ContentPaper,
-  ClienteContainer,
+  CondutorContainer,
 } from "./styles";
 import { useEffect, useState } from "react";
-import { ClienteData } from "@/@types/ClienteType";
+import { CondutorData } from "@/@types/CondutorType";
 import { AxiosResponse } from "axios";
 import { Add, Search } from "@mui/icons-material";
-import { ClienteTableItem } from "./components/ClienteTableItem";
+import { CondutorTableItem } from "./components/CondutorTableItem";
 import { useRouter } from "next/router";
 
-export default function Cliente() {
+export default function Condutor() {
   const router = useRouter();
-  const [clienteList, setClienteList] = useState<ClienteData[]>([]);
-  const [filterList, setFilterList] = useState<ClienteData[]>([]);
+  const [CondutorList, setCondutorList] = useState<CondutorData[]>([]);
+  const [filterList, setFilterList] = useState<CondutorData[]>([]);
 
   const [loading, setLoading] = useState<boolean>(true);
   useEffect(() => {
     async function callApi() {
-      await getCliente().then((response: AxiosResponse<ClienteData[]>) => {
+      await getCondutor().then((response: AxiosResponse<CondutorData[]>) => {
         console.log(response.data);
 
-        setClienteList(response.data);
+        setCondutorList(response.data);
         setFilterList(response.data);
       });
     }
@@ -45,16 +45,16 @@ export default function Cliente() {
   }, [loading]);
 
   function handleFilter(input: string) {
-    let filterList = clienteList.filter((cliente) => {
+    let filterList = CondutorList.filter((Condutor) => {
       if (
         input == "" ||
-        cliente.nome.toString().toLowerCase().includes(input.toLowerCase()) ||
-        cliente.numeroDocumento
+        Condutor.nome.toString().toLowerCase().includes(input.toLowerCase()) ||
+        Condutor.numeroHabilitacao
           .toString()
           .toLowerCase()
           .includes(input.toLowerCase())
       ) {
-        return cliente;
+        return Condutor;
       }
     });
     setFilterList(filterList);
@@ -62,9 +62,9 @@ export default function Cliente() {
 
 
   return (
-    <ClienteContainer maxWidth={"xl"}>
+    <CondutorContainer maxWidth={"xl"}>
       <Typography variant="h4" fontWeight={700} color={"primary.main"}>
-        Listagem de clientes
+        Listagem de Condutores
       </Typography>
 
       <ContentPaper>
@@ -73,13 +73,13 @@ export default function Cliente() {
           justifyContent={"flex-end"}
           color={"primary.dark"}
         >
-          <Button variant="contained" color="success" startIcon={<Add />} onClick={()=> router.push(`/cliente/new`)}>
-            Criar cliente
+          <Button variant="contained" color="success" startIcon={<Add />} onClick={()=> router.push(`/condutor/new`)}>
+            Criar Condutor
           </Button>
         </Box>
 
         <TextField
-          label="Buscar por nome ou por numero de documento"
+          label="Buscar por nome ou número da habilitação"
           variant="outlined"
           fullWidth
           size="small"
@@ -99,18 +99,18 @@ export default function Cliente() {
             <TableHead>
               <TableRow>
                 <TableCell>Nome</TableCell>
-                <TableCell sx={{ display: { xs: "none", md: "revert" } }}>
-                  Numero do documento
+                <TableCell >
+                  Número da Habilitação
                 </TableCell>
-                <TableCell>Logradouro</TableCell>
+                <TableCell sx={{ display: { xs: "none", md: "revert" } }}>Categoria</TableCell>
                 <TableCell align="center">Funções</TableCell>
               </TableRow>
             </TableHead>
             <StyledTableBody>
-              {filterList.map((cliente, index) => (
-                <ClienteTableItem
-                  key={cliente.id}
-                  cliente={cliente}
+              {filterList.map((Condutor, index) => (
+                <CondutorTableItem
+                  key={Condutor.id}
+                  Condutor={Condutor}
                   setLoading={setLoading}
                 />
               ))}
@@ -118,6 +118,6 @@ export default function Cliente() {
           </Table>
         </StyledTableContainer>
       </ContentPaper>
-    </ClienteContainer>
+    </CondutorContainer>
   );
 }

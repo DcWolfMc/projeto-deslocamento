@@ -1,7 +1,7 @@
 import { Container, Paper, TableBody, TableContainer, styled } from "@mui/material";
 
 
-export const ClienteContainer = styled(Container)(({ theme }) => `
+export const CondutorContainer = styled(Container)(({ theme }) => `
 display: flex;
 flex-direction:column;
 gap: 2.5rem;
@@ -51,7 +51,7 @@ export const StyledTableContainer = styled(TableContainer)(({ theme }) => `
             font-size: 0.875rem;
             line-height: 1.6;
             color: ${theme.palette.grey[300]};
-            &:first-child{
+            &:first-of-type{
                padding-left: 1.5rem;
             }
             &:last-child{
